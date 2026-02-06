@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DemiFine Jewels | Premium Affordable Jewelry</title>
+    <style>
+        /* RESET & BASE STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background: #fefefe;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* LAYER SYSTEM - Mobile First */
+        .container {
+            width: 100%;
+            padding: 0 15px;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+                padding: 0 20px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .container {
+                max-width: 960px;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+            }
+        }
+        
+        /* HEADER - Optimized for Mobile */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid #eee;
+            z-index: 1000;
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 50px;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #d4a574;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+            color: #ffd700;
+        }
+        
+        /* MOBILE MENU TOGGLE */
+        .menu-toggle {
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .menu-toggle span {
+            width: 20px;
+            height: 2px;
+            background: #333;
+            transition: 0.3s;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 4px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(4px, -4px);
+        }
+        
+        /* NAVIGATION - Mobile Optimized */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 999;
+            padding: 80px 20px 20px;
+            overflow-y: auto;
+        }
+        
+        .main-nav.active {
+            right: 0;
+        }
+        
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 998;
+            display: none;
+        }
+        
+        .nav-overlay.active {
+            display: block;
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .nav-links a {
+            display: block;
+            padding: 12px 15px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #f8f9fa;
+            color: #d4a574;
+        }
+        
+        /* HERO SECTION - Mobile Optimized */
+        .hero {
+            padding: 100px 0 60px;
+            background: linear-gradient(135deg, #fdf6e3 0%, #fff9f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+        }
+        
+        /* PRODUCTS SECTION - Grid System */
+        .products-section {
+            padding: 60px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #d4a574;
+            border-radius: 2px;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 767px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #eee;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .product-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .product-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #d4a574;
+            margin-bottom: 15px;
+        }
+        
+        /* BUTTONS - Touch Friendly */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #d4a574;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            -webkit-appearance: none;
+            touch-action: manipulation;
+            min-height: 44px; /* Minimum touch target size */
+        }
+        
+        .btn:hover {
+            background: #c8955f;
+            transform: translateY(-2px);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-full {
+            width: 100%;
+        }
+        
+        /* MODAL SYSTEM - Mobile Optimized */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1100;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal {
+            background: white;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.1);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            padding: 30px;
+        }
+        
+        /* CHATBOT - Mobile First Design */
+        .chatbot-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            background: #d4a574;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+        
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        .chatbot-container {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 320px;
+            max-width: calc(100vw - 40px);
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .chatbot-container.active {
+            display: flex;
+        }
+        
+        .chatbot-header {
+            padding: 20px;
+            background: #d4a574;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: #f9f9f9;
+        }
+        
+        .message {
+            max-width: 80%;
+            padding: 12px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+        }
+        
+        .message-bot {
+            background: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .message-user {
+            background: #d4a574;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .chatbot-input {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            background: white;
+        }
+        
+        .chatbot-input form {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        
+        .chatbot-input input:focus {
+            border-color: #d4a574;
+        }
+        
+        .chatbot-input button {
+            width: 45px;
+            height: 45px;
+            background: #d4a574;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* FOOTER - Mobile Optimized */
+        .site-footer {
+            background: #2c3e50;
+            color: white;
+            padding: 50px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #d4a574;
+        }
+        
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #d4a574;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+        
+        /* UTILITY CLASSES */
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-20 { margin-top: 20px; }
+        .mt-30 { margin-top: 30px; }
+        .mb-20 { margin-bottom: 20px; }
+        .mb-30 { margin-bottom: 30px; }
+        
+        .d-none { display: none; }
+        .d-block { display: block; }
+        
+        /* LOADING STATES */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #d4a574;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* TOUCH OPTIMIZATIONS */
+        @media (hover: none) and (pointer: coarse) {
+            .btn, 
+            .product-card,
+            .menu-toggle,
+            .modal-close,
+            .chatbot-toggle,
+            .chatbot-input button {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            .nav-links a {
+                padding: 15px 20px;
+            }
+            
+            input,
+            textarea,
+            select {
+                font-size: 16px; /* Prevents iOS zoom */
+            }
+        }
+        
+        /* PERFORMANCE OPTIMIZATIONS */
+        .will-change-transform {
+            will-change: transform;
+        }
+        
+        /* SAFE AREA INSETS FOR NOTCHED DEVICES */
+        @supports (padding: max(0px)) {
+            body, .container {
+                padding-left: max(15px, env(safe-area-inset-left));
+                padding-right: max(15px, env(safe-area-inset-right));
+            }
+            
+            .site-header {
+                padding-top: max(10px, env(safe-area-inset-top));
+            }
+            
+            .chatbot-widget {
+                bottom: max(20px, env(safe-area-inset-bottom));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <span class="logo-icon">💎</span>
+                    <span>DemiFine Jewels</span>
+                </a>
+                
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- MOBILE NAVIGATION -->
+    <div class="nav-overlay" id="navOverlay"></div>
+    <nav class="main-nav" id="mainNav">
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#necklaces">Necklaces</a></li>
+            <li><a href="#earrings">Earrings</a></li>
+            <li><a href="#rings">Rings</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Affordable Luxury Jewelry</h1>
+                <p class="hero-subtitle">Discover our premium collection of demi-fine jewelry, where elegance meets affordability.</p>
+                <a href="#collections" class="btn">Shop Collection</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FEATURED PRODUCTS -->
+    <section class="products-section" id="collections">
+        <div class="container">
+            <h2 class="section-title">Featured Collections</h2>
+            <div class="products-grid" id="productsContainer">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- PRODUCT MODAL -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-content" id="modalContent">
+                <!-- Modal content loaded by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- CHATBOT -->
+    <div class="chatbot-widget">
+        <div class="chatbot-container" id="chatbotContainer">
+            <div class="chatbot-header">
+                <h3>Jewelry Assistant</h3>
+                <button class="modal-close" id="chatbotClose">&times;</button>
+            </div>
+            <div class="chatbot-body" id="chatbotMessages">
+                <div class="message message-bot">
+                    Hello! I'm your jewelry assistant. How can I help you today? 😊
+                </div>
+                <div class="message message-bot">
+                    I can help with product information, sizing, delivery, and general questions about our jewelry collections.
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <form id="chatbotForm">
+                    <input type="text" id="chatbotInput" placeholder="Type your question..." required>
+                    <button type="submit">➤</button>
+                </form>
+            </div>
+        </div>
+        <button class="chatbot-toggle" id="chatbotToggle">
+            💬
+        </button>
+    </div>
+    
+    <!-- FOOTER -->
+    <footer class="site-footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>DemiFine Jewels</h3>
+                    <p>Premium quality demi-fine jewelry at affordable prices. Elegant designs for every occasion.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#collections">Collections</a></li>
+                        <li><a href="#necklaces">Necklaces</a></li>
+                        <li><a href="#earrings">Earrings</a></li>
+                        <li><a href="#rings">Rings</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li>Email: keanjohn72@gmail.com</li>
+                        <li>Phone: +91 98765 43210</li>
+                        <li>Mumbai, India</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 DemiFine Jewels. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // PRODUCT DATA WITH ALL YOUR IMAGES
+        const products = [
+            {
+                id: 1,
+                name: "Gold Bangles with Meenakari",
+                image: "https://i.imgur.com/wTsUtgj.jpeg",
+                description: "Traditional gold bangles with exquisite meenakari enamel work in vibrant colors.",
+                price: "₹2,399",
+                category: "bangles",
+                details: "These beautiful gold-plated bangles feature intricate meenakari enamel work in vibrant colors. The traditional Indian art form uses enamel to create stunning floral patterns. Each bangle is designed to make a statement while remaining comfortable for daily wear."
+            },
+            {
+                id: 2,
+                name: "Diamond Mangalsutra Set",
+                image: "https://i.imgur.com/BxHU2IG.jpeg",
+                description: "Traditional mangalsutra with diamond accents and matching earrings.",
+                price: "₹2,399",
+                category: "sets",
+                details: "This complete mangalsutra set includes a traditional black bead necklace with gold and diamond pendant, paired with matching diamond earrings. The design respects traditional symbolism while incorporating modern elegance."
+            },
+            {
+                id: 3,
+                name: "Gold Temple Jewelry Set",
+                image: "https://i.imgur.com/JN6dSwe.jpeg",
+                description: "Traditional temple jewelry inspired by South Indian designs.",
+                price: "₹2,399",
+                category: "sets",
+                details: "This exquisite temple jewelry set features intricate designs inspired by South Indian temple architecture. Made with gold plating and featuring traditional motifs, this set is perfect for traditional ceremonies and weddings."
+            },
+            {
+                id: 4,
+                name: "Pearl Gold Necklace",
+                image: "https://i.imgur.com/qDxHqkh.jpeg",
+                description: "Elegant pearl and gold necklace for special occasions.",
+                price: "₹2,399",
+                category: "necklaces",
+                details: "This stunning necklace combines the timeless elegance of pearls with the richness of gold plating. Featuring perfectly arranged simulated pearls and intricate gold work, this piece transitions beautifully from daytime elegance to evening sophistication."
+            },
+            {
+                id: 5,
+                name: "Diamond Nose Pin Set",
+                image: "https://i.imgur.com/uCjRID1.jpeg",
+                description: "Elegant diamond nose pins in traditional and modern designs.",
+                price: "₹2,399",
+                category: "nose-pins",
+                details: "This collection features four different styles of diamond nose pins, from traditional Indian designs to contemporary minimalist styles. Each piece is crafted with attention to detail, ensuring comfort and security."
+            },
+            {
+                id: 6,
+                name: "Gold Polki Necklace",
+                image: "https://i.imgur.com/DdEaDj3.jpeg",
+                description: "Traditional Polki diamond necklace with uncut diamonds.",
+                price: "₹2,399",
+                category: "necklaces",
+                details: "This magnificent Polki necklace features uncut diamond simulations set in intricate gold-plated settings, following traditional Mughal-inspired designs. Polki jewelry is known for its raw, natural beauty."
+            },
+            {
+                id: 7,
+                name: "Gold Maang Tikka",
+                image: "https://i.imgur.com/L4wdCMJ.jpeg",
+                description: "Traditional Indian forehead jewelry with diamonds.",
+                price: "₹2,399",
+                category: "hair-accessories",
+                details: "This exquisite maang tikka features intricate gold work with diamond accents, designed to be worn on the forehead as part of traditional Indian bridal jewelry. The piece is lightweight yet makes a significant style statement."
+            },
+            {
+                id: 8,
+                name: "Pearl & Diamond Choker",
+                image: "https://i.imgur.com/bdhZw7Q.png",
+                description: "Luxury pearl choker with diamond accents.",
+                price: "₹2,399",
+                category: "necklaces",
+                details: "This statement pearl choker features a strand of high-quality simulated pearls alternating with sparkling cubic zirconia stations. The pearls have excellent roundness and luster, while the CZ stones add brilliant sparkle."
+            },
+            {
+                id: 9,
+                name: "Gold Chain with Pendant",
+                image: "https://i.imgur.com/6UDOHEf.jpeg",
+                description: "Substantial gold chain with diamond pendant.",
+                price: "₹2,399",
+                category: "necklaces",
+                details: "This substantial gold-plated chain features a Byzantine pattern that's both flexible and eye-catching. The pendant showcases a 1-carat cubic zirconia stone in a secure bezel setting surrounded by smaller CZ accents."
+            },
+            {
+                id: 10,
+                name: "Gold Hoop Earrings",
+                image: "https://i.imgur.com/3aMVBVX.jpeg",
+                description: "Classic gold hoop earrings with diamond accents.",
+                price: "₹2,399",
+                category: "earrings",
+                details: "These timeless hoop earrings feature a diamond station every quarter inch, adding subtle sparkle to a classic design. Made from gold-plated surgical steel with secure lobster clasp closures."
+            },
+            {
+                id: 11,
+                name: "Diamond Gold Anklet",
+                image: "https://i.imgur.com/LGtMsMy.jpeg",
+                description: "Elegant gold anklet with diamond accents.",
+                price: "₹2,399",
+                category: "anklets",
+                details: "This delicate yet stunning anklet features a chain of gold links with small diamond accents. Perfect for adding a touch of elegance to your feet, this piece is designed for comfort while making a beautiful statement."
+            },
+            {
+                id: 12,
+                name: "Ruby Gold Earrings",
+                image: "https://i.imgur.com/FB8utqF.jpeg",
+                description: "Traditional ruby earrings with gold setting.",
+                price: "₹2,399",
+                category: "earrings",
+                details: "These beautiful earrings feature vibrant simulated rubies set in intricate gold-plated designs. The combination of red rubies and gold plating creates a stunning contrast that has been cherished in Indian jewelry for centuries."
+            },
+            {
+                id: 13,
+                name: "Gold Armlet Set",
+                image: "https://i.imgur.com/cRUnUd0.jpeg",
+                description: "Traditional gold armlets for special occasions.",
+                price: "₹2,399",
+                category: "armlets",
+                details: "This pair of armlets features traditional designs with intricate gold work. Worn on the upper arm, these pieces add a regal touch to traditional attire and are especially popular for weddings and cultural ceremonies."
+            },
+            {
+                id: 14,
+                name: "Diamond Gold Toe Rings",
+                image: "https://i.imgur.com/QpMaeB1.jpeg",
+                description: "Traditional Indian toe rings with diamond accents.",
+                price: "₹2,399",
+                category: "toe-rings",
+                details: "These elegant toe rings feature small diamond accents set in gold plating, following traditional Indian designs. Worn as symbols of marital status or simply as fashion statements, these pieces add a subtle touch of elegance."
+            },
+            {
+                id: 15,
+                name: "Gold Waist Chain",
+                image: "https://i.imgur.com/RarJN5j.jpeg",
+                description: "Traditional Indian waist jewelry with intricate design.",
+                price: "₹2,399",
+                category: "waist-chains",
+                details: "This beautiful waist chain features intricate gold patterns and is designed to be worn around the waist. A traditional piece of Indian jewelry that adds elegance and cultural significance to ethnic wear."
+            },
+            {
+                id: 16,
+                name: "Gold Hair Accessories",
+                image: "https://i.imgur.com/xjWi5R4.jpeg",
+                description: "Traditional gold hair pins and accessories.",
+                price: "₹2,399",
+                category: "hair-accessories",
+                details: "This collection of hair accessories includes traditional Indian hair pins and ornaments crafted in gold plating. Perfect for completing traditional hairstyles, these pieces add a touch of royalty to any ethnic look."
+            },
+            {
+                id: 17,
+                name: "Diamond Gold Pendant Set",
+                image: "https://i.imgur.com/HmgzMAK.jpeg",
+                description: "Complete pendant set with chain and matching earrings.",
+                price: "₹2,399",
+                category: "sets",
+                details: "This elegant set features a diamond pendant on a gold chain with matching diamond earrings. The cohesive design makes it perfect for gifting or for creating a coordinated look for special occasions."
+            },
+            {
+                id: 18,
+                name: "Gold Religious Pendant",
+                image: "https://i.imgur.com/DSqyGQX.jpeg",
+                description: "Traditional religious pendant with gold and gemstones.",
+                price: "₹2,399",
+                category: "pendants",
+                details: "This beautiful religious pendant features traditional designs with gold plating and gemstone accents. Worn as a symbol of faith and protection, this piece combines spiritual significance with exquisite craftsmanship."
+            },
+            {
+                id: 19,
+                name: "Diamond Gold Brooch",
+                image: "https://i.imgur.com/vARHk7v.jpeg",
+                description: "Vintage-style diamond brooch for sarees and dresses.",
+                price: "₹2,399",
+                category: "brooches",
+                details: "This elegant diamond brooch features vintage-inspired designs perfect for adorning sarees, dresses, or jackets. The piece adds a touch of sophistication and sparkle to any outfit."
+            },
+            {
+                id: 20,
+                name: "Gold Statement Ring",
+                image: "https://i.imgur.com/KDPP3qD.jpeg",
+                description: "Bold gold statement ring with intricate design.",
+                price: "₹2,399",
+                category: "rings",
+                details: "This stunning statement ring features bold gold work with intricate designs. Perfect for making a fashion statement, this ring draws attention and adds a touch of luxury to any ensemble."
+            },
+            {
+                id: 21,
+                name: "24K Gold Diamond Necklace",
+                image: "https://i.imgur.com/Lb0TwAQ.jpeg",
+                description: "Exquisite gold necklace with brilliant diamond centerpiece.",
+                price: "₹2,399",
+                category: "necklaces",
+                details: "This stunning gold-plated necklace features a brilliant 2-carat cubic zirconia centerpiece that mimics the sparkle of a real diamond. Set in premium gold-plated sterling silver."
+            },
+            {
+                id: 22,
+                name: "Diamond Solitaire Ring",
+                image: "https://i.imgur.com/igFwZm3.jpeg",
+                description: "Classic solitaire diamond ring in gold setting.",
+                price: "₹2,399",
+                category: "rings",
+                details: "The epitome of timeless elegance, this solitaire ring features a 1.5-carat round brilliant cubic zirconia stone set in a sleek gold-plated band with a secure four-prong setting."
+            },
+            {
+                id: 23,
+                name: "Gold Pearl Earrings",
+                image: "https://i.imgur.com/uIjcVuL.jpeg",
+                description: "Elegant pearl earrings with gold accents.",
+                price: "₹2,399",
+                category: "earrings",
+                details: "These elegant drop earrings combine the timeless elegance of simulated pearls with the luxury of gold plating. Each earring features a high-quality simulated pearl suspended from a gold-plated hook."
+            },
+            {
+                id: 24,
+                name: "Traditional Gold Bangles",
+                image: "https://i.imgur.com/owD06k2.jpeg",
+                description: "Set of traditional gold bangles with intricate designs.",
+                price: "₹2,399",
+                category: "bangles",
+                details: "This heritage collection features four distinct bangles, each with a different traditional pattern: peacock motif, floral design, geometric pattern, and temple architecture."
+            },
+            {
+                id: 25,
+                name: "Diamond Tennis Bracelet",
+                image: "https://i.imgur.com/xN6syOV.jpeg",
+                description: "Continuous line diamond bracelet in gold setting.",
+                price: "₹2,399",
+                category: "bracelets",
+                details: "This classic tennis bracelet features 32 round brilliant cubic zirconia stones set in a gold-plated channel setting. Each stone is hand-set to ensure maximum sparkle and security."
+            },
+            {
+                id: 26,
+                name: "Art Deco Diamond Brooch",
+                image: "https://i.imgur.com/NXPwQIV.jpeg",
+                description: "Vintage-inspired diamond brooch with geometric patterns.",
+                price: "₹2,399",
+                category: "brooches",
+                details: "Inspired by the Art Deco era of the 1920s, this brooch features geometric patterns of cubic zirconia stones set in gold-plated metal. The design includes 42 CZ stones arranged in precise symmetrical patterns."
+            },
+            {
+                id: 27,
+                name: "Sapphire & Diamond Ring",
+                image: "https://i.imgur.com/BoQCeMH.jpeg",
+                description: "Blue sapphire surrounded by diamond halo.",
+                price: "₹2,399",
+                category: "rings",
+                details: "Featuring a vibrant blue simulated sapphire surrounded by a halo of sparkling cubic zirconia stones, this ring embodies royal elegance. The sapphire displays its natural velvety blue color."
+            },
+            {
+                id: 28,
+                name: "Emerald Cut Diamond Earrings",
+                image: "https://i.imgur.com/qYOdOtb.jpeg",
+                description: "Geometric emerald cut diamonds in sleek modern setting.",
+                price: "₹2,399",
+                category: "earrings",
+                details: "These elegant earrings feature emerald-cut cubic zirconia stones set in a minimalist gold-plated setting. The step cuts create a 'hall of mirrors' effect that reflects light in straight lines."
+            },
+            {
+                id: 29,
+                name: "Gold Coin Necklace",
+                image: "https://i.imgur.com/w4zwOFv.jpeg",
+                description: "Antique-style gold coin pendant on substantial chain.",
+                price: "₹2,399",
+                category: "necklaces",
+                details: "This heritage-inspired necklace features an antique-style gold-plated coin pendant on a substantial rope chain. The coin is engraved with traditional motifs and measures 25mm in diameter."
+            },
+            {
+                id: 30,
+                name: "Diamond Cluster Ring",
+                image: "https://i.imgur.com/TnpWRrD.jpeg",
+                description: "Multiple diamonds clustered to create maximum sparkle.",
+                price: "₹2,399",
+                category: "rings",
+                details: "This cluster ring features 21 cubic zirconia stones arranged in a floral pattern to create exceptional sparkle from every angle. The stones are set using a prong and bezel combination."
+            },
+            {
+                id: 31,
+                name: "Diamond Bar Necklace",
+                image: "https://i.imgur.com/ToRQxlz.jpeg",
+                description: "Modern diamond bar necklace with clean lines.",
+                price: "₹2,399",
+                category: "necklaces",
+                details: "This contemporary necklace features a gold-plated bar set with 7 cubic zirconia stones in a channel setting. The clean lines and geometric design make it perfect for layering."
+            },
+            {
+                id: 32,
+                name: "Ruby and Diamond Bracelet",
+                image: "https://i.imgur.com/pkVdSGC.jpeg",
+                description: "Vibrant ruby and diamond bracelet in gold setting.",
+                price: "₹2,399",
+                category: "bracelets",
+                details: "This colorful bracelet alternates simulated ruby cabochons with round brilliant cubic zirconia stones, all set in gold-plated links. The rubies are simulated stones with rich, consistent red color."
+            },
+            {
+                id: 33,
+                name: "Complete Jewelry Set",
+                image: "https://i.imgur.com/8tykGDM.jpeg",
+                description: "Complete gold and diamond jewelry set.",
+                price: "₹2,399",
+                category: "sets",
+                details: "This complete set includes matching necklace, earrings, and ring, all featuring cubic zirconia stones set in gold plating. The cohesive design creates a unified look."
+            },
+            {
+                id: 34,
+                name: "Diamond Stud Earrings",
+                image: "https://i.imgur.com/oVbYJMN.jpeg",
+                description: "Simple yet stunning diamond stud earrings.",
+                price: "₹2,399",
+                category: "earrings",
+                details: "These classic diamond stud earrings feature 1-carat round brilliant cubic zirconia stones in a four-prong setting. The simple design allows the stones' natural beauty to shine."
+            }
+        ];
+        
+        // CHATBOT KNOWLEDGE BASE - Local responses for reliability
+        const chatbotKnowledge = {
+            greetings: [
+                "Hello! Welcome to DemiFine Jewels! How can I assist you today? 😊",
+                "Hi there! I'm your jewelry assistant. What can I help you with? 💎",
+                "Welcome! Looking for something special or have questions about our jewelry?"
+            ],
+            
+            pricing: [
+                "All our demi-fine jewelry pieces are priced at just ₹2,399 each! This includes premium materials and excellent craftsmanship.",
+                "Every piece in our collection is ₹2,399. We believe in offering luxury quality at affordable prices.",
+                "Yes, all items are ₹2,399. This fixed price makes shopping simple and transparent."
+            ],
+            
+            materials: [
+                "We use premium materials: gold-plated sterling silver, AAA quality cubic zirconia, and high-quality simulated pearls/gemstones. All pieces are nickel-free and hypoallergenic.",
+                "Our jewelry features gold plating over sterling silver bases, with cubic zirconia stones that rival real diamonds in sparkle. Everything is skin-friendly and tarnish-resistant.",
+                "Premium gold plating, cubic zirconia stones, and simulated pearls. All materials are selected for quality, durability, and beauty."
+            ],
+            
+            delivery: [
+                "We offer free shipping across India! Orders are processed within 24 hours and delivered in 3-7 business days. All packages are insured.",
+                "Shipping is free! Processing takes 1-2 days, delivery 3-7 days within India. We provide tracking for all orders.",
+                "Free shipping on all orders! Most orders reach customers within 5-7 business days. International shipping available to select countries."
+            ],
+            
+            returns: [
+                "15-day return policy for unworn items in original condition. Exchanges available for size adjustments within 30 days. 1-year quality guarantee included.",
+                "Easy 15-day returns. If you're not satisfied, return unworn items within 15 days for a full refund. We also offer exchanges.",
+                "We accept returns within 15 days. Items must be unworn with original packaging. Custom pieces cannot be returned."
+            ],
+            
+            payment: [
+                "Secure payments via Razorpay. We accept all major credit/debit cards, UPI, net banking, and digital wallets. All transactions are SSL encrypted.",
+                "We use Razorpay for secure payments. You can pay via card, UPI, or net banking. Your payment information is always protected.",
+                "Payment is through Razorpay's secure gateway. Multiple options available including cards, UPI, and wallets."
+            ],
+            
+            contact: [
+                "Email: keanjohn72@gmail.com | Phone: +91 98765 43210 | Based in Mumbai, India. We're here to help!",
+                "Contact us at keanjohn72@gmail.com or call +91 98765 43210. Our customer service team is available to assist you.",
+                "Reach us via email at keanjohn72@gmail.com or phone +91 98765 43210. We respond within 24 hours."
+            ],
+            
+            products: [
+                "We have necklaces, earrings, rings, bangles, sets, and traditional Indian jewelry. All at ₹2,399 each. What type are you interested in?",
+                "Our collection includes: traditional Indian jewelry, modern pieces, bridal sets, and everyday wear. Everything is ₹2,399.",
+                "Browse our collection: traditional pieces, contemporary designs, bridal jewelry, and accessories. All premium quality at ₹2,399."
+            ],
+            
+            default: [
+                "I'm here to help with your jewelry questions! Could you tell me more about what you're looking for?",
+                "That's a great question! As your jewelry assistant, I can help with product info, sizing, delivery, and more.",
+                "I understand you're interested in jewelry! Our collection features premium demi-fine pieces at affordable prices."
+            ]
+        };
+        
+        // Initialize the website
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeWebsite();
+            setupEventListeners();
+            loadProducts();
+        });
+        
+        function initializeWebsite() {
+            console.log('DemiFine Jewels - Mobile Optimized Website Loaded');
+            console.log('Products:', products.length);
+            console.log('Chatbot: Local Knowledge Base Active');
+            console.log('Payment Link: https://razorpay.me/@highland');
+        }
+        
+        function setupEventListeners() {
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            const navOverlay = document.getElementById('navOverlay');
+            
+            menuToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                mainNav.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+                document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+            });
+            
+            navOverlay.addEventListener('click', function() {
+                menuToggle.classList.remove('active');
+                mainNav.classList.remove('active');
+                this.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Close menu when clicking links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    menuToggle.classList.remove('active');
+                    mainNav.classList.remove('active');
+                    navOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // Product modal
+            const modalClose = document.getElementById('modalClose');
+            const productModal = document.getElementById('productModal');
+            
+            modalClose.addEventListener('click', function() {
+                productModal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            productModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Chatbot
+            const chatbotToggle = document.getElementById('chatbotToggle');
+            const chatbotContainer = document.getElementById('chatbotContainer');
+            const chatbotClose = document.getElementById('chatbotClose');
+            const chatbotForm = document.getElementById('chatbotForm');
+            const chatbotInput = document.getElementById('chatbotInput');
+            const chatbotMessages = document.getElementById('chatbotMessages');
+            
+            chatbotToggle.addEventListener('click', function() {
+                chatbotContainer.classList.toggle('active');
+            });
+            
+            chatbotClose.addEventListener('click', function() {
+                chatbotContainer.classList.remove('active');
+            });
+            
+            chatbotForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const question = chatbotInput.value.trim();
+                
+                if (question) {
+                    // Add user message
+                    addChatMessage(question, 'user');
+                    chatbotInput.value = '';
+                    
+                    // Show typing indicator
+                    const typingIndicator = document.createElement('div');
+                    typingIndicator.className = 'message message-bot';
+                    typingIndicator.innerHTML = '<div class="loading"></div>';
+                    chatbotMessages.appendChild(typingIndicator);
+                    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                    
+                    // Get response after delay
+                    setTimeout(() => {
+                        chatbotMessages.removeChild(typingIndicator);
+                        const response = getChatbotResponse(question);
+                        addChatMessage(response, 'bot');
+                    }, 800);
+                }
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+        
+        function loadProducts() {
+            const container = document.getElementById('productsContainer');
+            
+            // Display first 8 products on homepage
+            const featuredProducts = products.slice(0, 8);
+            
+            featuredProducts.forEach(product => {
+                const productCard = createProductCard(product);
+                container.appendChild(productCard);
+            });
+        }
+        
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-image">
+                <div class="product-info">
+                    <h3 class="product-name">${product.name}</h3>
+                    <p class="product-description">${product.description}</p>
+                    <div class="product-price">${product.price}</div>
+                    <button class="btn btn-full view-details" data-id="${product.id}">
+                        View Details
+                    </button>
+                </div>
+            `;
+            
+            // Add click event for view details
+            card.querySelector('.view-details').addEventListener('click', function() {
+                showProductModal(product.id);
+            });
+            
+            return card;
+        }
+        
+        function showProductModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="text-center mb-20">
+                    <img src="${product.image}" alt="${product.name}" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px;">
+                </div>
+                <h2 style="font-size: 1.5rem; margin-bottom: 10px; color: #333;">${product.name}</h2>
+                <div style="font-size: 1.5rem; font-weight: 700; color: #d4a574; margin-bottom: 15px;">${product.price}</div>
+                <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">${product.details}</p>
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    <h4 style="margin-bottom: 10px; color: #333;">Features:</h4>
+                    <ul style="padding-left: 20px; color: #666;">
+                        <li>Premium gold plating</li>
+                        <li>High-quality cubic zirconia</li>
+                        <li>Nickel-free & hypoallergenic</li>
+                        <li>1-year quality guarantee</li>
+                        <li>Free velvet pouch included</li>
+                    </ul>
+                </div>
+                <button class="btn btn-full" onclick="buyProduct(${product.id})" style="margin-top: 10px;">
+                    Buy Now - ${product.price}
+                </button>
+            `;
+            
+            // Show modal
+            const productModal = document.getElementById('productModal');
+            productModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function buyProduct(productId) {
+            const paymentLink = "https://razorpay.me/@highland?amount=PEQWYOKtr6suVXo%2F79nwpg%3D%3D";
+            window.open(paymentLink, '_blank');
+            
+            // Show confirmation
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <div class="text-center">
+                    <div style="font-size: 3rem; color: #4CAF50; margin-bottom: 20px;">✓</div>
+                    <h2 style="font-size: 1.5rem; margin-bottom: 15px; color: #333;">Redirecting to Payment</h2>
+                    <p style="color: #666; margin-bottom: 20px;">
+                        You're being redirected to our secure payment gateway to complete your purchase of:
+                        <br><strong>${products.find(p => p.id === productId)?.name}</strong>
+                    </p>
+                    <p style="color: #999; font-size: 0.9rem;">
+                        If the payment page doesn't open automatically, please check your popup blocker or 
+                        <a href="${paymentLink}" target="_blank" style="color: #d4a574;">click here</a>
+                    </p>
+                </div>
+            `;
+        }
+        
+        // Chatbot functions
+        function addChatMessage(text, sender) {
+            const messagesContainer = document.getElementById('chatbotMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message message-${sender}`;
+            messageDiv.textContent = text;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function getChatbotResponse(question) {
+            const lowerQuestion = question.toLowerCase();
+            
+            // Match question to knowledge base
+            if (/hello|hi|hey|greetings/.test(lowerQuestion)) {
+                return randomResponse(chatbotKnowledge.greetings);
+            }
+            else if (/price|cost|how much|₹|rs/.test(lowerQuestion)) {
+                return randomResponse(chatbotKnowledge.pricing);
+            }
+            else if (/material|gold|silver|cz|stone|pearl|quality/.test(lowerQuestion)) {
+                return randomResponse(chatbotKnowledge.materials);
+            }
+            else if (/delivery|shipping|dispatch|time|arrive|when/.test(lowerQuestion)) {
+                return randomResponse(chatbotKnowledge.delivery);
+            }
+            else if (/return|exchange|refund|warranty|guarantee/.test(lowerQuestion)) {
+                return randomResponse(chatbotKnowledge.returns);
+            }
+            else if (/payment|pay|card|upi|razorpay|emi|how to pay/.test(lowerQuestion)) {
+                return randomResponse(chatbotKnowledge.payment);
+            }
+            else if (/contact|email|phone|address|store|location/.test(lowerQuestion)) {
+                return randomResponse(chatbotKnowledge.contact);
+            }
+            else if (/product|necklace|earring|ring|bangle|set|jewelry/.test(lowerQuestion)) {
+                return randomResponse(chatbotKnowledge.products);
+            }
+            else {
+                return randomResponse(chatbotKnowledge.default);
+            }
+        }
+        
+        function randomResponse(responses) {
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+        
+        // Global function for buy now
+        window.buyProduct = buyProduct;
+    </script>
+</body>
+</html>
